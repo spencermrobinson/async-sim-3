@@ -8,7 +8,7 @@ import Login from './Login/Login.js';
 export default function Routes(){
     return( 
     <Switch>
-        <Route exact path="/" component={ Login }/>
+        <Route path="/auth" component={ Login }/>
         <Route path="/dashboard" component={ Dashboard }/>
     
     </Switch>
