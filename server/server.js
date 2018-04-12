@@ -8,6 +8,7 @@ const massive = require('massive');
 
 
 
+
 const {
     SERVER_PORT,
     SECRET,
@@ -15,15 +16,16 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL, 
-    CONNNECTION_STRING
+    CONNECTION_STRING
 }=process.env
 
 
 const app = express();
 app.use(bodyParser.json());
 
-massive(CONNNECTION_STRING).then( db => {
+massive(CONNECTION_STRING).then( db => {
     app.set('db', db);
+    console.log('db connected')
 })
 .catch((err) => console.log(err));
 
@@ -32,6 +34,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -43,13 +47,12 @@ passport.use( new Auth0Strategy({
     callbackURL: CALLBACK_URL,
     scope: 'openid profile'
 }, function(accessToken, refreshToken, extraParams, profile, done){
-    const picture = function(){ 
-        return Math.floor((Math.random()+1) *1000)};
-    const db = app.get('db');
-   db.find_user([profile.user_id]).then(users => {
+    const picture = Math.floor((Math.random()+1) *1000);
+    const db = app.get('db')
+   db.find_user([profile.id]).then(users => {
        if(!users[0]){
-           db.create_user([profile.user_id, profile.name.givenName, profile.name.familyName, `https://robohash.org/${picture}`]).then(res => {
-               done(null, userCreated[0].id);
+           db.create_user([profile.id, profile.name.givenName, profile.name.familyName, `https://robohash.org/${picture}`]).then(users => {    
+           done(null, users[0].id);  
            })
        }else{
            done(null, users[0].id)
@@ -59,16 +62,29 @@ passport.use( new Auth0Strategy({
 
 passport.serializeUser(function(profile, done){
     done(null, profile)
+    console.log(profile, 'profile')
+    
 });
-passport.deserializeUser(function(profile, done){
-    done(null, profile)
-});
+passport.deserializeUser( (profile, done) => {
+    app.get('db').find_session_user([profile]).then( user => {
+        done(null, user[0]);
+        
+    })
+})
 
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
     successRedirect: 'http://localhost:3000/#/dashboard'
-}))
+}));
+
+app.get('/api/auth/authenticate', (req,res) => {
+    if(req.user){
+        res.status(200).send(req.user);
+    }else{
+        res.status(401).send('unauthorized user')
+    }
+})
 
 
 
