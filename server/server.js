@@ -78,7 +78,7 @@ app.get('/auth/callback', passport.authenticate('auth0',{
     successRedirect: 'http://localhost:3000/#/dashboard'
 }));
 
-app.get('/api/auth/authenticate', (req,res) => {
+app.get('/auth/authenticate', (req,res) => {
     if(req.user){
         res.status(200).send(req.user);
     }else{
