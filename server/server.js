@@ -43,8 +43,18 @@ passport.use( new Auth0Strategy({
     callbackURL: CALLBACK_URL,
     scope: 'openid profile'
 }, function(accessToken, refreshToken, extraParams, profile, done){
-    console.log(profile)
-    done(null, profile)
+    const picture = function(){ 
+        return Math.floor((Math.random()+1) *1000)};
+    const db = app.get('db');
+   db.find_user([profile.user_id]).then(users => {
+       if(!users[0]){
+           db.create_user([profile.user_id, profile.name.givenName, profile.name.familyName, `https://robohash.org/${picture}`]).then(res => {
+               done(null, userCreated[0].id);
+           })
+       }else{
+           done(null, users[0].id)
+       }
+   })
 }));
 
 passport.serializeUser(function(profile, done){
