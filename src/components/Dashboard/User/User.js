@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './User.css';
 
 export default function User({logout, history, user}){
@@ -13,7 +14,7 @@ export default function User({logout, history, user}){
                 <br/>
                 <span className='user_text'>{user ? user.lastname : null}</span>
                 <br/>
-                <button type='' className='edit_button'>Edit Profile</button>
+                <Link to="/profile"><button type='' className='edit_button'>Edit Profile</button></Link>
                 </div>  
             </div> 
             <div className="informative_container">

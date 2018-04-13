@@ -32,7 +32,9 @@
 }
 .login_button {
     height: 35px;
-    width: 200px;
+    width: 300%;
+    position: relative;
+    left: -100%;
     font-size: 20px;
     color: white;
     border-radius: 4px;
@@ -43,5 +45,10 @@
 @media(max-width: 700px){
     .logo{
         height: 60px;
+    }
+    .login_button {
+        width: 150%;
+        position: relative;
+        left: -20%;
     }
 }

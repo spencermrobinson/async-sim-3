@@ -13,7 +13,7 @@ class Dashboard extends Component{
 
     }
     componentWillMount(){
-        const{ user, history, authenticated, logout} = this.props;
+        const{ user, history, authenticated} = this.props;
         auth(authenticated, user, history, null, null, null);
     }
 

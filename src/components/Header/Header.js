@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import home from '../assets/home.png';
 import search from '../assets/search.png';
 import './Header.css';
@@ -8,7 +9,7 @@ export default function Header({page, logout}){
         <div className='header_container'>
             <div className='helo_container'>
                 <span className='helo_header_text'>Helo</span>
-                <img src={ home } alt='home' className="home"/>
+                <Link to="/dashboard"><img src={ home } alt='home' className="home"/></Link>
                 <img src= { search } alt="search" className="search"/>
             </div>
             <div className="page_container">

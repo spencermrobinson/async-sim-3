@@ -1,0 +1,65 @@
+.profile_parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    align-content: center;
+    padding: 20px;
+}
+.profile_user_display {
+   height: 160px;
+   width: 80%;
+   background-color: white;
+   display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.profile_picture{
+    height: 140px;
+    border: 3px solid #ffd670;
+    
+}
+.profile_firstname{
+    margin: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    position: relative;
+    bottom: 50px;
+}
+.profile_lastname{
+    margin: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    position: relative;
+    bottom: 50px;
+}
+.profile_button_container {
+    height: 60px;
+    width: 200px;
+    
+}
+.update_button {
+    height: 40px;
+    width: 80px;
+    color: white;
+    font-size: 16px;
+    font-weight: 100;
+    border-radius: 6px;
+    margin: 10px;
+    background-image: radial-gradient(circle at 50%-46%, #737373, #403d39);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+}
+.cancel_button {
+    height: 40px;
+    width: 80px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+}
