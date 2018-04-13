@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { authenticated, logout } from '../../ducks/reducer.js';
 import auth from '../../utilities/Auth.js';
 import User from './User/User.js';
-import Header from '../Header/Header.js'
+import Header from '../Header/Header.js';
+import './Dashboard.css';
 
 
 class Dashboard extends Component{
@@ -20,13 +21,17 @@ class Dashboard extends Component{
         const { user, logout }= this.props;
         console.log(user, 'user')
         return(
-            <div>
+            <div className='dashboard'>
                 <div>
                     <Header page="Dashboard" logout={ logout }/>
-                </div> 
-                <div>
-                <User user={ user }/>
-                </div> 
+                </div>
+                <div className="displays"> 
+                    <div className='user_display_container'>
+                    
+                        <User user={ user }/>
+                    
+                    </div>
+                </div>  
             </div> 
         )
     }

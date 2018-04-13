@@ -1,0 +1,65 @@
+.display_user_container {
+    height: 160px;
+    width: 80%;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    padding: 6px;
+}
+.user_container {
+    height: 160px;
+    width: 35%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+   
+}
+
+.informative_container{
+    height: 160px;
+    width: 55%;
+    background-color: white;
+    font-size: 20px;
+    padding: 10px;
+  
+	
+}
+.informative_text {
+    font-size: 18px;
+    font-weight: 100;
+    margin: 14px;
+	
+}
+
+image_container {
+    height: 200px;
+    width: 10%;
+    
+}
+.user_picture {
+    height: 120px;
+    border: 3px solid #FFD670;
+}
+.edit_button {
+    height: 30px;
+    width: 100%;
+    margin: 12px;
+    position: relative;
+    top: 8px;
+    right: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    border-radius: 4px;
+}
+.user_text {
+    font-size: 20px;
+    margin-top: 20px;
+    
+}
