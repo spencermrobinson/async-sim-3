@@ -86,6 +86,12 @@ app.get('/auth/authenticate', (req,res) => {
     }
 })
 
+app.get('/auth/logout', (req, res) => {
+    req.logOut();
+    res.redirect('http://localhost:3000/#/auth')
+    console.log('logout hit on back end')
+})
+
 
 
 
