@@ -92,6 +92,8 @@ app.get('/auth/logout', (req, res) => {
     console.log('logout hit on back end')
 })
 
+app.patch('/api/update/:id', )
+
 
 
 
