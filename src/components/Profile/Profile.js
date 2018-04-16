@@ -3,11 +3,27 @@ import { connect } from 'react-redux';
 import { logout, authenticated } from '../../ducks/reducer.js';
 import Header from '../Header/Header.js';
 import auth from '../../utilities/Auth.js';
+import Drop from '../../utilities/Drop.js';
 import './Profile.css';
 
 class Profile extends Component{
     constructor(props){
         super(props);
+        this.state= {
+            id: '',
+            firstname: '',
+            lastname: '',
+            birthday: '',
+            eye: '',
+            hair: '',
+            gender: '',
+            hobby: '',
+            b_month: '',
+            b_day: '',
+            b_year: '',
+            showRequired: false
+        };
+        
 
     }
 
