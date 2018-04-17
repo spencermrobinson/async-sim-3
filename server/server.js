@@ -94,6 +94,7 @@ app.get('/auth/logout', (req, res) => {
 })
 
 app.put('/api/update/:id', ctrl.updateUser );
+app.get('/api/recommended', ctrl.recommended );
 
 
 

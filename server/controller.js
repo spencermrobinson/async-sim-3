@@ -8,4 +8,11 @@ module.exports = {
             console.log(response.data)
         }).catch( ()=> res.status(500).send())
     },
+
+    recommended: (req, res) => {
+        let db = req.app.get('db');
+        db.find_recommended().then(response => {
+            res.status(200).send(response.data)
+        }).catch ( ()=> res.status(500).send())
+    },
 }

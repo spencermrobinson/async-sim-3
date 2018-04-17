@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './User.css';
 
-export default function User({logout, history, user}){
+export default function User({logout, history, user, picture}){
     return(
         <div className='display_user_container'>
             <div className='user_container'>

@@ -1,11 +1,13 @@
 import axios from 'axios';
 const initialState = {
     user: null,
+    recommended: null,
 }
 
 const AUTHENTICATED = "AUTHENTICATED";
 const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
+const GET_RECOMMENDED = "GET_RECOMMENDED";
 
 export default ( state = initialState, action ) => {
     const { payload } = action;
@@ -21,8 +23,23 @@ export default ( state = initialState, action ) => {
 
         case UPDATE_USER + '_FULFILLED':
         return Object.assign( {}, state, { user: payload} );
+
+        case GET_RECOMMENDED + '_FULFILLED':
+        return Object.assign( {}, state, { recommended: payload})
+        
     }
 };
+
+export function getRecommended(){
+    const promise = axios.get('/api/recommended').then( response =>{
+        response.data }
+        
+    )
+    return {
+        type: GET_RECOMMENDED,
+        payload: promise
+    }
+}
 
 export function logout(){
 

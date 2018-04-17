@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authenticated, logout } from '../../ducks/reducer.js';
+import { authenticated, logout, getRecommended } from '../../ducks/reducer.js';
 import auth from '../../utilities/Auth.js';
 import User from './User/User.js';
 import Header from '../Header/Header.js';
@@ -15,11 +15,15 @@ class Dashboard extends Component{
     componentDidMount(){
         const{ user, history, authenticated} = this.props;
         auth(authenticated, user, history, null, null, null);
+        this.props.getRecommended();
+        
     }
+   
 
     render(){
         const { user, logout }= this.props;
         console.log(user, 'user')
+        console.log(this.props.recommended, "recommended")
         return(
             <div className='dashboard'>
                 <div>
@@ -38,7 +42,8 @@ class Dashboard extends Component{
 }
 
 function mapStateToProps(state){
-   return{ user: state.user
+   return{ user: state.user,
+        recommended: state
     }
 }
-export default connect( mapStateToProps, { authenticated, logout })(Dashboard);
+export default connect( mapStateToProps, { authenticated, logout, getRecommended })(Dashboard);
