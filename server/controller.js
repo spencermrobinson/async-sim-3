@@ -12,7 +12,8 @@ module.exports = {
     recommended: (req, res) => {
         let db = req.app.get('db');
         db.find_recommended().then(response => {
-            res.status(200).send(response.data)
+            res.status(200).send(response)
+            console.log(response, 'recommended')
         }).catch ( ()=> res.status(500).send())
     },
 }

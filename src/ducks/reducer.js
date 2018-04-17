@@ -31,8 +31,8 @@ export default ( state = initialState, action ) => {
 };
 
 export function getRecommended(){
-    const promise = axios.get('/api/recommended').then( response =>{
-        response.data }
+    const promise = axios.get('/api/recommended').then( response =>
+        response.data 
         
     )
     return {

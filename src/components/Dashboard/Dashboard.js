@@ -43,7 +43,7 @@ class Dashboard extends Component{
 
 function mapStateToProps(state){
    return{ user: state.user,
-        recommended: state
+        recommended: state.recommended
     }
 }
 export default connect( mapStateToProps, { authenticated, logout, getRecommended })(Dashboard);
