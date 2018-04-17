@@ -8,8 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
     hair VARCHAR(20),
     eye VARCHAR(20),
     hobby VARCHAR(20),
-    day VARCHAR(20),
-    month VARCHAR(20),
-    year VARCHAR(20)
+    birthday VARCHAR(20),
+    
 
 );

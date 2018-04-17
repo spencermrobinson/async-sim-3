@@ -5,7 +5,7 @@ const initialState = {
 
 const AUTHENTICATED = "AUTHENTICATED";
 const LOGOUT = "LOGOUT";
-const PATCH_USER = "PATCH_USER";
+const UPDATE_USER = "UPDATE_USER";
 
 export default ( state = initialState, action ) => {
     const { payload } = action;
@@ -19,7 +19,7 @@ export default ( state = initialState, action ) => {
 
         default: return state;
 
-        case PATCH_USER + '_FULFILLED':
+        case UPDATE_USER + '_FULFILLED':
         return Object.assign( {}, state, { user: payload} );
     }
 };
@@ -32,8 +32,13 @@ export function logout(){
     }
 }
 
-export function patchUser(obj){
-    const promise = axios.patch( `/api/update`)
+export function updateUser(obj){
+    const promise = axios.put( `/api/update/${obj.id}`, obj).then(response => response.data);
+    
+    return {
+        type: UPDATE_USER,
+        payload: promise
+    }
 }
 
 export function authenticated(history, currentPath, optionalSuccessRedirect ){

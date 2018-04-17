@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const massive = require('massive');
+const ctrl = require('./controller.js');
 
 
 
@@ -92,7 +93,7 @@ app.get('/auth/logout', (req, res) => {
     console.log('logout hit on back end')
 })
 
-app.patch('/api/update/:id', )
+app.put('/api/update/:id', ctrl.updateUser );
 
 
 
