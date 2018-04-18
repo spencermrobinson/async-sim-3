@@ -54,7 +54,7 @@ class Profile extends Component{
       }
 
       updateProfile(){
-          const updateUser = this.props;
+          
           const { id, firstname, lastname, eye, hair, gender, hobby, birthday } = this.state;
         this.props.updateUser({ id, firstname, lastname, eye, hair, gender, hobby, birthday});
         this.props.history.push('/dashboard');
@@ -76,7 +76,7 @@ class Profile extends Component{
       }
 
     render(){
-        const { history, user, logout, updateUser } = this.props;
+        const {  user } = this.props;
         const months = Drop.months;
         const days = Drop.days;
         const  renderYears = Drop.years.map( year =>(
@@ -91,7 +91,7 @@ class Profile extends Component{
                 <div className="profile_parent"> 
                 <div className="profile_user_display">
                     <div className="profile_user">
-                        <img src={user.picture} alt='picture' className="profile_picture"/>
+                        <img src={user.picture} alt='' className="profile_picture"/>
                         <span className="profile_firstname">{user.firstname}</span>
                         <span className="profile_lastname">{user.lastname}</span>
                     </div>

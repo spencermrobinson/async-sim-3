@@ -10,10 +10,13 @@ module.exports = {
     },
 
     recommended: (req, res) => {
-        let db = req.app.get('db');
-        db.find_recommended().then(response => {
+        const db = req.app.get('db');
+        console.log(req.params,'params')
+        console.log(typeof req.user)
+        db.getfilter([ req.user.id , req.params.filter ]).then(response => {
+            console.log(response,"response")
             res.status(200).send(response)
-            console.log(response, 'recommended')
-        }).catch ( ()=> res.status(500).send())
+            
+        }).catch ( (err)=> res.status(500).send(console.log(err)))
     },
 }

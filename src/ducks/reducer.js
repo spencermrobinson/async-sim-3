@@ -30,9 +30,9 @@ export default ( state = initialState, action ) => {
     }
 };
 
-export function getRecommended(){
-    const promise = axios.get('/api/recommended').then( response =>
-        response.data 
+export function getRecommended( filter){
+    const promise = axios.get( `/api/recommended/${filter}`).then( response =>
+        response.data
         
     )
     return {

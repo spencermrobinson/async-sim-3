@@ -4,26 +4,38 @@ import { authenticated, logout, getRecommended } from '../../ducks/reducer.js';
 import auth from '../../utilities/Auth.js';
 import User from './User/User.js';
 import Header from '../Header/Header.js';
+import Recommended from './Recommended/Recommended.js';
 import './Dashboard.css';
 
 
 class Dashboard extends Component{
     constructor(props){
         super(props);
-
+        this.state={
+            filter: 'firstname'
+        }
+        this.updateFilter = this.updateFilter.bind(this);
     }
     componentDidMount(){
         const{ user, history, authenticated} = this.props;
         auth(authenticated, user, history, null, null, null);
-        this.props.getRecommended();
+
+        this.props.getRecommended( this.state.filter);
         
+    }
+
+    updateFilter( filter ){
+        this.setState({ filter });
+        const { getRecommended }= this.props;
+        getRecommended( filter );
     }
    
 
     render(){
         const { user, logout }= this.props;
-        console.log(user, 'user')
-        console.log(this.props.recommended, "recommended")
+        const { filter } = this.state;
+        
+       
         return(
             <div className='dashboard'>
                 <div>
@@ -35,7 +47,42 @@ class Dashboard extends Component{
                         <User user={ user }/>
                     
                     </div>
-                </div>  
+                </div>
+                <div className="recommended_parent">
+                    <div className="recommended child">
+                        <div className="recommended_header">
+                            <span className='recommended_header_text'>Recommended Friends</span>
+                            <div>
+                            <span className='recommended_header_text'>Sort By:</span>
+                            <select className="filter_select" value={ filter } onChange ={ (e) => this.updateFilter( e.target.value ) }>
+                            <option value='firstname'>First Name</option>
+                            <option value='laststname'>Last Name</option>
+                            <option value='gender'>Gender</option>
+                            <option value='hobby'>Hobby</option>
+                            <option value='hair'>Hair Color</option>
+                            <option value='eye'>Eye Color</option>
+                            <option value='birthday'>Birthday</option>
+                            </select>
+                            </div>  
+                        </div>
+                        <div className="recommended_user">
+                        {this.props.recommended !== null 
+                        ?
+                          <div className="recommended_users_child">
+                          {
+                              this.props.recommended.map( user => (
+                                <Recommended key={ user.id }  recommended_friend={ user }  />
+                              ))
+                          }
+                          </div>
+                        :
+                          <div className="Dashboard__recommended_users_child_empty">
+                            <span className="open-sans"> No recommendations </span>
+                          </div>
+                      }
+                        </div>  
+                    </div> 
+                </div>   
             </div> 
         )
     }

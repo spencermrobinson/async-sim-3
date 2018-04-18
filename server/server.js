@@ -76,7 +76,8 @@ passport.deserializeUser( (profile, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: 'http://localhost:3000/#/dashboard'
+    successRedirect: 'http://localhost:3000/#/dashboard',
+    failureRedirect: 'http://localhost:3000/#/auth' 
 }));
 
 app.get('/auth/authenticate', (req,res) => {
@@ -94,7 +95,7 @@ app.get('/auth/logout', (req, res) => {
 })
 
 app.put('/api/update/:id', ctrl.updateUser );
-app.get('/api/recommended', ctrl.recommended );
+app.get('/api/recommended/:filter', ctrl.recommended );
 
 
 

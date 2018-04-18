@@ -63,3 +63,11 @@ image_container {
     margin-top: 20px;
     
 }
+@media(max-Width: 800px){
+    .informative_text{
+        display: none;
+    }
+    .user_container{
+        width:80vw;
+    }
+}

@@ -1,5 +1,5 @@
 .dashboard {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: #f2f2f2;
     
@@ -18,4 +18,41 @@
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
+}
+.recommended_parent {
+    height: 100%;
+    width: 71%;
+    background-color: white;
+    position: relative;
+    right: -13%;
+    padding: 20px;
+    
+    
+
+}
+@media(max-Width:900px){
+    .recommended_parent {
+        width: 66%;
+    }
+}
+.recommended_child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.recommended_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.recommended_header_text {
+    font-size: 20px;
+    margin: 10px;
+}
+.filter_select {
+    height: 30px;
+    width: 120px;
+    margin: 10px;
+    font-size: 16px;
 }
