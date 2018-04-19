@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authenticated, logout, getRecommended } from '../../ducks/reducer.js';
+import { authenticated, logout, getRecommended, addRecommended } from '../../ducks/reducer.js';
 import auth from '../../utilities/Auth.js';
 import User from './User/User.js';
 import Header from '../Header/Header.js';
@@ -29,10 +29,11 @@ class Dashboard extends Component{
         const { getRecommended }= this.props;
         getRecommended( filter );
     }
+    
    
 
     render(){
-        const { user, logout }= this.props;
+        const { user, logout, addRecommended }= this.props;
         const { filter } = this.state;
         
        
@@ -49,10 +50,10 @@ class Dashboard extends Component{
                     </div>
                 </div>
                 <div className="recommended_parent">
-                    <div className="recommended child">
+                    <div className="recommended_child">
                         <div className="recommended_header">
                             <span className='recommended_header_text'>Recommended Friends</span>
-                            <div>
+                            <div className="filter_container">
                             <span className='recommended_header_text'>Sort By:</span>
                             <select className="filter_select" value={ filter } onChange ={ (e) => this.updateFilter( e.target.value ) }>
                             <option value='firstname'>First Name</option>
@@ -65,13 +66,14 @@ class Dashboard extends Component{
                             </select>
                             </div>  
                         </div>
+                        
                         <div className="recommended_user">
                         {this.props.recommended !== null 
                         ?
                           <div className="recommended_users_child">
                           {
                               this.props.recommended.map( user => (
-                                <Recommended key={ user.id }  recommended_friend={ user }  />
+                                <Recommended key={ user.id }  recommended_friend={ user } filter={ this.state.filter } addRecommended={ addRecommended } />
                               ))
                           }
                           </div>
@@ -80,7 +82,8 @@ class Dashboard extends Component{
                             <span className="open-sans"> No recommendations </span>
                           </div>
                       }
-                        </div>  
+                        </div>
+                          
                     </div> 
                 </div>   
             </div> 
@@ -93,4 +96,4 @@ function mapStateToProps(state){
         recommended: state.recommended
     }
 }
-export default connect( mapStateToProps, { authenticated, logout, getRecommended })(Dashboard);
+export default connect( mapStateToProps, { authenticated, logout, getRecommended, addRecommended })(Dashboard);

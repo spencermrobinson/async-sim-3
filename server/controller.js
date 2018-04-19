@@ -19,4 +19,13 @@ module.exports = {
             
         }).catch ( (err)=> res.status(500).send(console.log(err)))
     },
+
+    addRecommended: (req, res) => {
+        const db = req.app.get('db');
+        console.log(req.params, 'params')
+        db.add_recommended([req.user.id, req.params.id, req.params.filter]).then( response => {
+            console.log('response:', response)
+            res.status(200).send( response )
+        }).catch( (err) => res.status(500).send(console.log(err)))
+    }
 }

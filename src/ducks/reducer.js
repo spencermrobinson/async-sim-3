@@ -8,6 +8,7 @@ const AUTHENTICATED = "AUTHENTICATED";
 const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
 const GET_RECOMMENDED = "GET_RECOMMENDED";
+const ADD_RECOMMENDED = "ADD_RECOMMENDED";
 
 export default ( state = initialState, action ) => {
     const { payload } = action;
@@ -26,9 +27,22 @@ export default ( state = initialState, action ) => {
 
         case GET_RECOMMENDED + '_FULFILLED':
         return Object.assign( {}, state, { recommended: payload})
+
+        case ADD_RECOMMENDED + '_FULFILLED':
+        return Object.assign( {}, state, { recommended: payload })
         
     }
 };
+
+export function addRecommended( filter, id ){
+    const promise = axios.post(`/api/newfriend/${filter}/${id}`).then( response => 
+    response.data
+    )
+    return {
+        type: ADD_RECOMMENDED,
+        payload: promise
+    }
+}
 
 export function getRecommended( filter){
     const promise = axios.get( `/api/recommended/${filter}`).then( response =>
