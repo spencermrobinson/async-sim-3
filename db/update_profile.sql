@@ -6,4 +6,6 @@ hair = $4,
 eye = $5, 
 hobby = $6, 
 birthday = $7
-WHERE id = $8;
+WHERE id = $8
+
+RETURNING * ;

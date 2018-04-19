@@ -15,6 +15,7 @@ class Dashboard extends Component{
             filter: 'firstname'
         }
         this.updateFilter = this.updateFilter.bind(this);
+        this.addFriend = this.addFriend.bind(this);
     }
     componentDidMount(){
         const{ user, history, authenticated} = this.props;
@@ -29,11 +30,14 @@ class Dashboard extends Component{
         const { getRecommended }= this.props;
         getRecommended( filter );
     }
-    
+    addFriend(filter, id ){
+        this.props.addRecommended(filter, id);
+    }
+
    
 
     render(){
-        const { user, logout, addRecommended }= this.props;
+        const { user, logout }= this.props;
         const { filter } = this.state;
         
        
@@ -73,7 +77,7 @@ class Dashboard extends Component{
                           <div className="recommended_users_child">
                           {
                               this.props.recommended.map( user => (
-                                <Recommended key={ user.id }  recommended_friend={ user } filter={ this.state.filter } addRecommended={ addRecommended } />
+                                <Recommended key={ user.id }  recommended_friend={ user } filter={ this.state.filter } addFriend={ this.addFriend } />
                               ))
                           }
                           </div>

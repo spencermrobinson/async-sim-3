@@ -3,7 +3,7 @@ import './Recommended.css';
 
 class Recommended extends Component {
     render(){
-        const { recommended_friend, filter, addRecommended } = this.props;
+        const { recommended_friend, filter, addFriend } = this.props;
         return(
             <div className="recommended_parent_container">
                 <img className="recommended_picture" src={ recommended_friend.picture } alt="friend"/>
@@ -12,7 +12,7 @@ class Recommended extends Component {
                     <br/>
                     <span className="recommended_lastname">{ recommended_friend.lastname }</span>
                 </div> 
-                <button type='' className='recommended_button' onClick={ () => addRecommended(filter, recommended_friend.id)}>Add Friend</button>
+                <button type='' className='recommended_button' onClick={ () => addFriend(filter, recommended_friend.id)}>Add Friend</button>
             </div> 
         )
     }
