@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS friends(
-id SERIAL PRIMARY KEY,
+table_id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES users(id),
 friend_id INTEGER REFERENCES users(id)
 );
