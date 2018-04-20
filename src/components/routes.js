@@ -13,7 +13,6 @@ export default function Routes(){
         <Route exact path="/auth" component={ Login }/>
         <Route path="/dashboard" component={ Dashboard }/>
         <Route path="/profile" component={ Profile }/>
-        <Route exact path="/search" component={ Search }/>
         <Route path="/search/:page" component={ Search }/>
     
     </Switch>

@@ -98,6 +98,7 @@ app.put('/api/update/:id', ctrl.updateUser );
 app.get('/api/recommended/:filter', ctrl.recommended );
 app.post('/api/newfriend/:filter/:id', ctrl.addRecommended );
 app.get('/api/searchAll', ctrl.searchAll);
+app.get('/api/searchFriends/:col/:input/:page', ctrl.searchFriends);
 
 
 

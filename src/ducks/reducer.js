@@ -11,6 +11,7 @@ const UPDATE_USER = "UPDATE_USER";
 const GET_RECOMMENDED = "GET_RECOMMENDED";
 const ADD_RECOMMENDED = "ADD_RECOMMENDED";
 const SEARCH_ALL = "SEARCH_ALL";
+const SEARCH_FRIENDS = "SEARCH_FRIENDS";
 
 export default ( state = initialState, action ) => {
     const { payload } = action;
@@ -35,6 +36,9 @@ export default ( state = initialState, action ) => {
 
         case SEARCH_ALL + '_FULFILLED':
         return Object.assign({}, state, {searchArr: payload})
+
+        case SEARCH_FRIENDS + '_FULFILLED':
+        return Object.assign( {}, state, { searchArr: payload})
         
     }
 };
@@ -47,6 +51,16 @@ export function searchAll(){
     )
     return {
         type: SEARCH_ALL,
+        payload: promise
+    }
+}
+
+export function searchFriends(col, input, page){
+    const promise = axios.get(`/api/searchFriends/${col}/${input}/${page}`).then(response =>
+        response.data
+    )
+    return {
+        type: SEARCH_FRIENDS,
         payload: promise
     }
 }

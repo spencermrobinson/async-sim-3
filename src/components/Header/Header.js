@@ -10,7 +10,7 @@ export default function Header({page, logout}){
             <div className='helo_container'>
                 <span className='helo_header_text'>Helo</span>
                 <Link to="/dashboard"><img src={ home } alt='home' className="home"/></Link>
-                <Link to="/search"><img src= { search } alt="search" className="search"/></Link>
+                <Link to="/search/1"><img src= { search } alt="search" className="search"/></Link>
             </div>
             <div className="page_container">
                 <span className='page_text'>{ page }</span>

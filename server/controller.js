@@ -30,5 +30,15 @@ module.exports = {
             res.status(200).send(response)
         }).catch( (err) => res.status(500).send(console.log(err)));
 
+    },
+    searchFriends: (req, res) => {
+        const db = req.app.get('db');
+        console.log('req.params:', req.params)
+        const input = req.params.input == 'null' ? '' : req.params.input;
+        console.log('input:',input)
+        db.searchfriends([req.user.id, req.params.col, `${input}`, req.params.page]).then( response => {
+            console.log('searchFriends:', response)
+            res.status(200).send(response)
+        }).catch( (err) => res.status(500).send(console.log(err)));
     }
 }
