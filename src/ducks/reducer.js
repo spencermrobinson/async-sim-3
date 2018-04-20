@@ -2,6 +2,7 @@ import axios from 'axios';
 const initialState = {
     user: null,
     recommended: null,
+    searchArr: null
 }
 
 const AUTHENTICATED = "AUTHENTICATED";
@@ -9,6 +10,7 @@ const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
 const GET_RECOMMENDED = "GET_RECOMMENDED";
 const ADD_RECOMMENDED = "ADD_RECOMMENDED";
+const SEARCH_ALL = "SEARCH_ALL";
 
 export default ( state = initialState, action ) => {
     const { payload } = action;
@@ -30,9 +32,24 @@ export default ( state = initialState, action ) => {
 
         case ADD_RECOMMENDED + '_FULFILLED':
         return Object.assign( {}, state, { recommended: payload })
+
+        case SEARCH_ALL + '_FULFILLED':
+        return Object.assign({}, state, {searchArr: payload})
         
     }
 };
+
+export function searchAll(){
+    console.log('search all hit')
+    const promise = axios.get(`/api/searchAll`).then( response =>
+        
+        response.data
+    )
+    return {
+        type: SEARCH_ALL,
+        payload: promise
+    }
+}
 
 export function addRecommended( filter, id ){
     const promise = axios.post(`/api/newfriend/${filter}/${id}`).then( response => 
